@@ -1,5 +1,3 @@
-prime = [2,3,5,7]
-
 myNum = input('Please enter Value = ')
 	
 while (x*x < myNum):
