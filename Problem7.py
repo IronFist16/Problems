@@ -1,3 +1,4 @@
+import time
 
 class Node:
 	__slots__ = ('data', 'next',)
@@ -13,22 +14,20 @@ class LinkedList:
 	__slots__ = ('length', 'head', 'cur', 'tail', )
 	
 	def __init__(self):
-		self.length = 0
-		self.head   = None
-		self.cur = None
-		self.tail = None
+		self.head   = Node(2)
+		self.cur = self.head
+		self.curPrime = self.cur
+		self.tail = self.cur
+		self.length = 1
 		
 	def add_node(self,data):
-		new_node = Node()
-		new_node.data = data
-		new_node.next = self.cur
+		new_node = Node(data,None)
+		self.cur.next = new_node
 		self.cur = new_node
-		if (not self.length):
-			self.head = new_node
 		self.length += 1
 		
 	def list_print(self):
-		node = self.cur
+		node = self.head
 		while node:
 			print node.data, ('-')
 			node = node.next
@@ -40,27 +39,30 @@ class LinkedList:
 		
 count = input('Enter a number of prime = ')
 
-myTry = 2
+s = time.time()
+
+myTry = 3
 
 primeList = LinkedList()
 
 while(primeList.length <= count):
-	dv = 2
+	primeList.curPrime = primeList.head
 	prime = 1
-	while(dv*dv <= myTry):
-		if(myTry % dv == 0):
+	while(primeList.curPrime.data * primeList.curPrime.data <= myTry):
+		if(myTry % primeList.curPrime.data == 0):
 			prime = 0
 			break
-		dv += 1
+		primeList.curPrime = primeList.curPrime.next
 	if (prime):
 		 primeList.add_node(myTry)
 	if(primeList.length == count):
 		primeList.tail = primeList.cur
 	myTry += 1
 
-
-
-primeList.list_print()
-print ('Length = '), primeList.length - 1
-print ('Head = '), primeList.head.data
-print ('Tail = '), primeList.tail.data
+delta_time = time.time() - s
+#primeList.list_print()
+print 'Calculation time =', delta_time
+#print ('Length = '), primeList.length 
+#print ('Head = '), primeList.head.data
+#print ('Tail = '), primeList.tail.data
+print 'The ' + repr(count) + 'st prime = ' + repr(primeList.tail.data)
