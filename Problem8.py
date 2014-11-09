@@ -1,3 +1,9 @@
+import time
+
+mySize = input("Enter size of product: ")
+
+strt = time.time()
+
 s = [73167176531330624919225119674426574742355349194934]
 s.append(96983520312774506326239578318016984801869478851843)
 s.append(85861560789112949495459501737958331952853208805511)
@@ -18,8 +24,6 @@ s.append(84580156166097919133875499200524063689912560717606058861164671094050775
 s.append(71636269561882670428252483600823257530420752963450)
 
 s1 = [int(elem) for i in range(18) for elem in str(s[i])]
-
-mySize = input("Enter size of product: ")
 
 i,myIndex, mul, mynb = 0,0,1,int("".join(str(s1[i]) for i in range(mySize)))
 
@@ -47,5 +51,7 @@ while i <= 1000 - mySize:
 		#print "mynb = " , mynb
 	i += 1
 
+e = time.time() - strt
 print "Result = ",mynb
 print "Product = ", product(s1,myIndex,mySize)
+print "Solved in: ", e
