@@ -1,13 +1,8 @@
+i,j,s = 1, 1, 0
 
-i = 1
-seq = [1,2]
+while (j <= 4000000):
+    if not (j % 2): 
+        s+= j;
+    i,j=j,i+j;
 
-while ((seq[i] + seq[i-1]) <= 4000000):
-	seq.append(seq[i] + seq[i-1])
-	i = i + 1
-	
-print ('Fib. Series(100) = '), seq
-for k in range(i+1):
-	if (seq[k] % 2 == 0):
-		print('Even value = '), seq[k] 
-print ('Sum of Fib. Series(100) of Even numbers = '), sum(seq[j] for j in range(i+1) if (seq[j] % 2 == 0))
+print s
