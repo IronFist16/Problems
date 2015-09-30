@@ -1,7 +1,7 @@
 def fct(size):
 	d={}
-	for i in range(size):
-		for j in range(size):
+	for i in range(size+1):
+		for j in range(size+1):
 			d[(i,j)] = 0
 			if i == 0 or j == 0:
 				d[(i,j)] = 1
